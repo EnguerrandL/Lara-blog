@@ -23,8 +23,9 @@ class AdminController extends Controller
             'tags' => $tag,
         ]);
 
-    }
+    }  
 
+    // Hello 
 
     public function storeTag( FormPostRequest $request) {
 
