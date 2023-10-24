@@ -37,6 +37,18 @@ class Post extends Model
         return Storage::disk('public')->url($this->image);
     }
 
+    public function postStatus() {
+
+        // dd($this->created_at);
+        if($this->updated_at >  $this->created_at ){
+            return 'Dernière mise à jour : ' . $this->updated_at;
+          
+        } else  {
+           
+            return 'Date de création : ' . $this->created_at;
+        }
+    }
+
 
     // Interdire la création avec les champs indiquer dans le tableau
     protected $guarded = [];

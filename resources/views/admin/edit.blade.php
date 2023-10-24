@@ -16,25 +16,27 @@
     <div class="form-group">
 
         <label for="title">Titre de votre publication</label>
-        <input class="form-control" type="text" name="title" value="">
+        <input class="form-control" type="text" name="title" value="{{old('title', $post->content)}}">
         @error('title')
         {{ $message }}
         @enderror
  
         <label for="slug">Slug de votre publication</label>
-        <input class="form-control" type="text" name="slug"  value="" >
+        <input class="form-control" type="text" name="slug"  value="{{old('slug', $post->slug)}}" >
         @error('slug')
         {{ $message }}
         @enderror
    
         <label for="content">Contenu de votre publication</label>
-        <textarea  class="form-control" name="content"></textarea>
+        <textarea  class="form-control" name="content">{{old('content', $post->content)}}</textarea>
         @error('content')
         {{ $message }}
         @enderror
 
         <label for="image" class="form-label">Image d'illustration</label>
         <input class="form-control" type="file" name="image">
+
+      
    
 
   

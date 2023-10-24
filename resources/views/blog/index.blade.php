@@ -6,7 +6,7 @@
 
     <h1 >Mon blog</h1>
 
-    <button type="button" class="btn btn-danger"><a href="">Tous supprimer</a></button>
+
 
     {{-- @dump($posts) --}}
 
@@ -36,11 +36,7 @@
        
 
     <p>{{   $post->content    }}</p>
-    <div class="row col-2 mb-2">
-        <button type="button" class="btn btn-success"><a href="{{ route('blog.edit', ['slug' => $post->slug, 'post' => $post->id])}}"></a>Editer</button>
-        <button type="button" class="btn btn-danger">Supprimer</button>
 
-    </div>
     </div> 
 
 

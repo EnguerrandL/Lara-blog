@@ -24,6 +24,7 @@ class PostFactory extends Factory
             'slug' => fake()->slug(),
             'content' => fake()->text(),
             'category_id' => fake()->randomDigit(),
+           
 
        
         ];

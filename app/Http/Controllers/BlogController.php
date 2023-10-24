@@ -19,73 +19,9 @@ class BlogController extends Controller
 {
 
 
-
-    public function create(){
-        
-        $post =  new Post();
-        return view('blog.create', [
-            'post' => $post,
-        ]); 
-    }
-
-
-    public function store(FormPostRequest $request){
-      
-
-        $post = Post::create($request->validated());
-
-        return redirect()->route('blog.show', ['slug' => $post->slug, 'post' => $post->id])->with('success', 'L\'article a bien été sauvergardé');
-          
-    }
-
-
-    public function edit(Post $post){
-        
-    //   dd(Tag::select('id', 'name')->get());
- 
-        return view('blog.edit', [
-            'post' => $post,
-            'categories' => Category::select('id', 'name')->get(),
-            'tags' => Tag::select('id', 'name')->get()
-        ]);
-
-
-    }
-
-
-    public function update(Post $post, FormPostRequest $request){
-
-        $post->tags()->sync($request->validated('tags'));
-
-     $post->update($request->validated()); 
-     return redirect()->route('blog.show', ['slug' => $post->slug, 'post' => $post->id])->with('success', 'L\'article a mis à jour');
-
-    }
-
-
-  
-
-
     public function index(BlogFilterRequest $request): View{
 
-        // $post = Post::find(2);
-        // $post->category_id = 2;
-        // $post->save();
-        
-        // $category = Category::find(1);    
-        //     $category->posts()->where('id', '>', '10')->get();
-        // dd(Post::all());
-
-        // dd($request->validated());
-
-
-        // $post = Post::find(2);
-        // $post->tags()->createMany([[
-        //     'name' => 'Tag 1'
-        // ], [
-        //     'name' => 'Tag 2'
-        // ]]);
-
+     
 
 
         return view('blog.index', [
