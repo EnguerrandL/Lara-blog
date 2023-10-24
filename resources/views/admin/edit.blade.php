@@ -1,6 +1,6 @@
 @extends('base'); 
 
-@yield('title', 'Edition de {{ $post->title}}' )
+{{-- @yield('title', 'Edition de {{ $post->title}}' ) --}}
 
 
 
@@ -10,7 +10,7 @@
 
 
 <h2>Editer votre publication : {{$post->title}}</h2>
-<form  action="{{ route('admin.update', $post->id) }}" method="POST">
+<form  action="{{ route('admin.update', $post->id) }}" method="POST" enctype="multipart/form-data">
     @csrf
  
     <div class="form-group">
@@ -32,6 +32,9 @@
         @error('content')
         {{ $message }}
         @enderror
+
+        <label for="image" class="form-label">Image d'illustration</label>
+        <input class="form-control" type="file" name="image">
    
 
   

@@ -13,22 +13,37 @@
 
 <div class="container-fluid">
     <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-10 mx-auto">
             <ul class="list-group">
                 @foreach ($posts as $post)
-                    <li class="list-group-item list-group-item-primary d-flex justify-content-between align-items-center mb-3">
-                        <div>
-                            {{ $post->title }} - Publié le : {{ $post->created_at }}
-                        </div>
-                        <div>
-                            <form action="{{ route('admin.destroy', $post) }}" method="POST">
+
+        
+                {{-- @php
+                    dd($post->image)
+                @endphp --}}
+           
+               
+                    <li class="list-group-item list-group-item-primary d-flex justify-between  align-items-center mb-3">
+                        @if ($post->image)
+                        <img src="{{ $post->imgUrl() }}" class="rounded float-left"  width="200" alt="Responsive image">
+                        @endif
+                   
+                     
+                          <p>  {{ $post->title }} - Publié le : {{ $post->created_at }}</p>
+
+
+                             <a class="   btn btn-warning" href="{{route('admin.update', $post)}}" >Editer</a>
+                            <a  class="    btn btn-primary"href="{{ route('blog.show', ['slug' => $post->slug, 'post' => $post->id])}}">Voir la publication</a>
+                            <form  class="m-3 column"  action="{{ route('admin.destroy', $post) }}" method="POST">
                                 @csrf
                                 @method('DELETE')
-                                <button class="btn btn-danger" type="submit">Supprimer</button>
+                                <button class="btn btn-danger " type="submit">X</button>
                             </form>
-                            <a class="mt-2 btn btn-warning" href="{{route('admin.update', $post)}}" role="button">Editer</a>
-                        </div>
+                 
+
+                    
                     </li>
+            
                 @endforeach
             </ul>
         </div>

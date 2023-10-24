@@ -8,9 +8,9 @@
 @section('content')
     
 <h2>Ajouter un nouveau post à votre blog</h2>
-<form  action="{{ route('admin.store') }}" method="POST">
+<form  class="container " action="{{ route('admin.store') }}" method="POST" enctype="multipart/form-data">
     @csrf
-    <div class="form-group">
+    <div class="form-group ">
 
         <label for="title">Titre de votre publication</label>
         <input class="form-control" type="text" name="title" value="">
@@ -29,11 +29,14 @@
         @error('content')
         {{ $message }}
         @enderror
-   
+
+
+        <label for="image" class="form-label">Image d'illustration</label>
+        <input class="form-control" type="file" name="image">
 
   
 
-        <button class="btn btn-success">
+        <button class="mt-3 container  col-5  btn btn-success">
          Ajouter ce nouveau post à votre blog
         </button>
 

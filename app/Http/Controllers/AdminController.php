@@ -8,7 +8,9 @@ use App\Models\Post;
 use App\Models\Tag;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Request;
+use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Benchmark;
+use Illuminate\Support\Facades\Storage;
 
 class AdminController extends Controller
 {
@@ -102,7 +104,7 @@ class AdminController extends Controller
     public function storeCategorie(FormPostRequest $request){
 
      
-        
+
        Category::create($request->validated()); 
 
 
@@ -150,11 +152,11 @@ class AdminController extends Controller
     }
 
     public function store(FormPostRequest $request){
-        
-         Post::create($request->validated());
+
+      
+        $post = new Post(); 
        
-       
-        
+       Post::create($this->extractData($post, $request));
        return redirect()->route('admin.index')->with('success', 'La publication à été crée');
 
     //    return  dd('working');
@@ -172,13 +174,42 @@ class AdminController extends Controller
 
 
     public function update(Post $post, FormPostRequest $request) {
-        
-        $post->update($request->validated());
+
+
+   
+      
+        $post->update($this->extractData($post, $request));
 
         return redirect()->route('admin.index', ['post' => $post])
         ->with('success', 'Votre publication à été mise à jour'); 
 
     }
+
+    private function extractData(Post $post, Request $request): array
+    {
+
+        $data = $request->validated();
+
+        
+        $image = $request->validated('image');
+        $data['image'] = $image->store('blog', 'public');
+        if($image = null || $image->getError() ){
+
+            return $data;
+        }
+        if($post->image){
+            
+            Storage::disk('public')->delete($post->image);
+        
+        }
+     
+
+       
+        return $data;
+          
+        }
+
+    
 
 
 

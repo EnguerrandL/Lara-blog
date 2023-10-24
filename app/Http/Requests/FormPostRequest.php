@@ -30,7 +30,8 @@ class FormPostRequest extends FormRequest
             'content' => ['min:2'],
             'name' => ['min:2'],
             'category_id' => [  'exists:categories,id'],
-            'tags' => ['array', 'exists:tags,id', ]
+            'tags' => ['array', 'exists:tags,id', ],
+            'image' => ['image', 'max:2000' ],
             
         ];
     }
