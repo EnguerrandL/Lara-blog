@@ -87,6 +87,8 @@ dd(Request::route()->getPrefix());
 
 
 
+@auth
+    
 
 
     <div class="container-fluid">
@@ -103,7 +105,7 @@ dd(Request::route()->getPrefix());
                         <svg class="bi me-2" width="40" height="32">
                             <use xlink:href="#bootstrap" />
                         </svg>
-                        <span class="fs-4">Gestion du blog</span>
+                        <span class="fs-4">Accueil du blog</span>
                     </a>
                     <hr>
                     <ul class=" nav nav-pills flex-column mb-auto">
@@ -130,7 +132,7 @@ dd(Request::route()->getPrefix());
                                 <svg class="bi me-2" width="16" height="16">
                                     <use xlink:href="#speedometer2" />
                                 </svg>
-                                Ajout de posts
+                                Ajout de publications
                             </a>
                         </li>
                         <li>
@@ -143,7 +145,7 @@ dd(Request::route()->getPrefix());
                                 <svg class="bi me-2" width="16" height="16">
                                     <use xlink:href="#table" />
                                 </svg>
-                                Gestion de catégories
+                                Gestion des catégories
                             </a>
                         </li>
                         <li>
@@ -155,7 +157,7 @@ dd(Request::route()->getPrefix());
                                 <svg class="bi me-2" width="16" height="16">
                                     <use xlink:href="#grid" />
                                 </svg>
-                                Gestion de tags
+                                Gestion des tags
                             </a>
                         </li>
                         {{-- <li>
@@ -171,6 +173,9 @@ dd(Request::route()->getPrefix());
 
                 </div>
             </div>
+
+
+            @endauth
             <div class="col-md-9 col-lg-10">
                 <div class="container">
                     <!-- Votre contenu ici -->

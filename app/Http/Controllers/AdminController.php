@@ -194,14 +194,16 @@ class AdminController extends Controller
     }
 
 
-    public function edit(Post $post, Category $category, Tag $tag)
+    public function edit(Post $post)
     {
 
+        
 
         return view('admin.edit', [
             'post' => $post,
-            'categories' => $category,
-            'tags' => $tag
+            'categories' => Category::select('id', 'name')->get(),
+            'tags' => Tag::select('id', 'name')->get(),
+        
         ]);
     }
 
@@ -212,6 +214,7 @@ class AdminController extends Controller
 
 
         $post->update($this->extractData($post, $request));
+        $post->tags()->sync($request->validated('tags'));
 
         return redirect()->route('admin.index', ['post' => $post])
             ->with('success', 'Votre publication à été mise à jour');

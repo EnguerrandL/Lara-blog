@@ -34,6 +34,25 @@
                 {{ $message }}
             @enderror
 
+            @php 
+              
+            $tagIds = $post->tags->pluck('id');
+          
+            @endphp 
+
+            <select class="form-select"  id="tag" name="tags[]" multiple >
+                <option disabled>Selection des tags</option>
+
+                @foreach ($tags as $tag)
+       
+                    <option @selected($tagIds->contains($tag->id))  value="{{ $tag->id }}">{{ $tag->name }}</option>
+                @endforeach
+            </select>
+            @error('tags')
+            {{ $message }}
+            @enderror
+    
+
          
 
             <div class="row mt-3 mb-3">
