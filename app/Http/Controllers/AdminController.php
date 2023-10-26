@@ -82,11 +82,13 @@ class AdminController extends Controller
     public function create()
     {
         $post = new Post();
-        // $category = Category::all();
-        // $tag = Tag::all();
+        $category = Category::all();
+        $tag = Tag::all();
 
         return view('admin.create', [
             'post' => $post,
+            'categories' => $category,
+            'tags' => $tag,
 
         ]);
     }
@@ -158,22 +160,34 @@ class AdminController extends Controller
     {
 
 
-        $post = new Post();
+        $post = new Post($this->extractData(new Post, $request));
 
-        Post::create($this->extractData($post, $request));
+       
+        $post->save();
+
+        // Post::create($this->extractData($post, $request));
+        $post->tags()->sync($request->validated('tags'));
+
+
+
+        // dd($post->tags()->sync($request->validated('tags'), false));
+
+
         return redirect()->route('admin.index')->with('success', 'La publication à été crée');
 
-        //    return  dd('working');
+        //       return  dd('working');
 
     }
 
 
-    public function edit(Post $post)
+    public function edit(Post $post, Category $category, Tag $tag)
     {
 
 
         return view('admin.edit', [
             'post' => $post,
+            'categories' => $category,
+            'tags' => $tag
         ]);
     }
 
@@ -189,8 +203,9 @@ class AdminController extends Controller
             ->with('success', 'Votre publication à été mise à jour');
     }
 
-    private function extractData(Post $post, Request $request): array
+    private function extractData(Post $post, FormPostRequest $request): array
     {
+
 
         $data = $request->validated();
 

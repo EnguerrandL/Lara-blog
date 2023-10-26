@@ -16,35 +16,43 @@ class Post extends Model
 
     // Autorisé la création avec ces champs
     protected $fillable = [
-        'title', 
+        'title',
         'slug',
         'content',
         'category_id',
         'tags_id',
-       'image',
+        'created_at',
+        'updated_at',
+
+        'image',
     ];
 
 
-    public function category (){
+    public function category()
+    {
         return $this->belongsTo(Category::class);
     }
 
-    public function tags(){
+    public function tags()
+    {
         return $this->belongsToMany(Tag::class);
     }
 
-    public function imgUrl(): string{
+    public function imgUrl(): string
+    {
         return Storage::disk('public')->url($this->image);
     }
 
-    public function postStatus() {
 
-        // dd($this->created_at);
-        if($this->updated_at >  $this->created_at ){
+
+    public function postStatus()
+    {
+
+
+        if ($this->updated_at >  $this->created_at) {
             return 'Dernière mise à jour : ' . $this->updated_at;
-          
-        } else  {
-           
+        } else {
+
             return 'Date de création : ' . $this->created_at;
         }
     }

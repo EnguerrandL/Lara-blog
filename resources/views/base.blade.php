@@ -72,33 +72,33 @@ dd(Request::route()->getPrefix());
 
 
 
-          <div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark" style="min-height: 100vh; width: 280px;">
+          <div  class="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark" style="min-height: 100vh; width: 280px;">
             <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
               <svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"/></svg>
               <span class="fs-4">Gestion du blog</span>
             </a>
             <hr>
-            <ul class="nav nav-pills flex-column mb-auto">
-              <li class="nav-item">
-                <a href="{{route('admin.index')}}" class="nav-link active" aria-current="page">
+            <ul class=" nav nav-pills flex-column mb-auto">
+              <li class="nav-item ">
+                <a @class([' nav-link', 'text-white active' => request()->route()->getName() === 'admin.index' ]) href="{{route('admin.index')}}" class="nav-link text-white" aria-current="page">
                   <svg class="bi me-2" width="16" height="16"><use xlink:href=""/></svg>
                   Liste des posts
                 </a>
               </li>
               <li>
-                <a href="{{route('admin.create')}}" class="nav-link text-white">
+                <a @class([' nav-link', 'text-white active' => request()->route()->getName() === 'admin.create' ]) href="{{route('admin.create')}}" class="nav-link text-white">
                   <svg class="bi me-2" width="16" height="16"><use xlink:href="#speedometer2"/></svg>
                   Ajout de posts
                 </a>
               </li>
               <li>
-                <a href="{{route('admin.create.categories')}}" class="nav-link text-white">
+                <a @class([' nav-link', 'text-white active' => request()->route()->getName() === 'admin.create.categories' ]) href="{{route('admin.create.categories')}}" class="nav-link text-white">
                   <svg class="bi me-2" width="16" height="16"><use xlink:href="#table"/></svg>
                   Gestion de catégories
                 </a>
               </li>
               <li>
-                <a href="{{route('admin.tag')}}" class="nav-link text-white">
+                <a @class([' nav-link', 'text-white active' => request()->route()->getName() === 'admin.tag' ]) href="{{route('admin.tag')}}" class="nav-link text-white">
                   <svg class="bi me-2" width="16" height="16"><use xlink:href="#grid"/></svg>
                   Gestion de tags
                 </a>

@@ -19,11 +19,11 @@ return new class extends Migration
             $table->timestamps();
         });
 
-
+        // foreignIdFor
 
         Schema::create('post_tag', function (Blueprint $table) {
-            $table->foreignIdFor(Post::class)->constrained()->cascadeOnDelete();
-            $table->foreignIdFor(Tag::class)->constrained()->cascadeOnDelete();
+            $table->foreignIdFor(\App\Models\Post::class)->constrained()->cascadeOnDelete();
+            $table->foreignIdFor(\App\Models\Tag::class)->constrained()->cascadeOnDelete();
             $table->primary(['post_id', 'tag_id']);
         });
     }
@@ -35,5 +35,7 @@ return new class extends Migration
     {
         Schema::dropIfExists('post_tag');
         Schema::dropIfExists('tags');
+       
+      
     }
 };

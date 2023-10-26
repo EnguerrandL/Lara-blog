@@ -23,7 +23,7 @@ class PostFactory extends Factory
             'title' => fake()->name(),
             'slug' => fake()->slug(),
             'content' => fake()->text(),
-            'category_id' => fake()->randomDigit(),
+            'category_id' => fake()->randomDigitNotNull(),
            
 
        

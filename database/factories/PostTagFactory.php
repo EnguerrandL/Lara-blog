@@ -17,7 +17,7 @@ class PostTagFactory extends Factory
     public function definition(): array
     {
 
-        $vlue = fake()->randomDigit();
+        $vlue = fake()->randomDigitNotNull();
         
         return [
             
