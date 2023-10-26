@@ -1,9 +1,12 @@
 <?php
 
-use App\Http\Controllers\AdminController;
+
+use App\Http\Controllers\Authcontroller;
 use App\Http\Controllers\BlogController;
+use App\Http\Controllers\AdminController;
 use App\Models\Post;
 use App\Models\Category;
+use Illuminate\Auth\Middleware\Authenticate;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -22,8 +25,11 @@ use Illuminate\Support\Facades\Route;
 //     return view('welcome');
 // });
 
+Route::get('/login', [Authcontroller::class,'login'])->name('auth.login');
+Route::post('/login', [Authcontroller::class,'loged']);
+Route::delete('/logout', [Authcontroller::class,'logOut'])->name('auth.logout');
 
-Route::prefix('/admin')->controller(AdminController::class)->group(function(){
+Route::prefix('/admin')->middleware('auth')->controller(AdminController::class)->group(function(){
     Route::get('/', 'index')->name('admin.index');
     Route::get('/create',  [AdminController::class, 'create'])->name('admin.create');
     Route::get('/create-categories', [AdminController::class, 'createCategories'])->name('admin.create.categories');

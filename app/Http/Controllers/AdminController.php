@@ -6,10 +6,13 @@ use App\Http\Requests\FormPostRequest;
 use App\Models\Category;
 use App\Models\Post;
 use App\Models\Tag;
+use App\Models\User;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Request;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Benchmark;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 
 class AdminController extends Controller
@@ -67,6 +70,15 @@ class AdminController extends Controller
 
     public function index()
     {
+         
+      
+ 
+        // User::create([
+        //     'name' => 'Admin',
+        //     'email' => 'admin@net.fr',
+        //     'password' => Hash::make('0000')
+        // ]); 
+
 
         $post = Post::all();
         $category = Category::all();
@@ -81,6 +93,8 @@ class AdminController extends Controller
 
     public function create()
     {
+
+ 
         $post = new Post();
         $category = Category::all();
         $tag = Tag::all();
