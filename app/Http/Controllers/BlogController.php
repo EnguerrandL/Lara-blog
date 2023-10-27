@@ -7,10 +7,12 @@ use App\Http\Requests\FormPostRequest;
 use App\Models\Category;
 use App\Models\Post;
 use App\Models\Tag;
+use App\Models\User;
 use Illuminate\Contracts\Pagination\Paginator;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
 use Illuminate\View\View as ViewView;
@@ -20,12 +22,10 @@ class BlogController extends Controller
 
 
     public function index(BlogFilterRequest $request): View{
-
-     
-
-
+    
         return view('blog.index', [
-            'posts' => Post::paginate(0)
+            'posts' => Post::all(),
+            'categories' => Category::all()
         ]);
     }
 
@@ -42,6 +42,25 @@ class BlogController extends Controller
             'post' => $post
         ]);
     }
+
+
+public function showCategory( $category){
+
+   
+
+    // dd( $category);
+    $posts = Post::where('category_id', $category)->get();
+  
+
+   
+  
+
+    return view('blog.showcategory', [
+        'posts' => $posts,
+        'category' => $category,
+     
+    ]);
+}
 
 
 

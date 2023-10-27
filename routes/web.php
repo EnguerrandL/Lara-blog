@@ -69,6 +69,8 @@ Route::prefix('/')->name('blog.')->controller(BlogController::class)->group(func
         'slug' => '[a-z0-9\-]+' 
     ])->name('show');
 
+    Route::get('/{category}', 'showCategory')->name('showCategory');
+
 
 
 

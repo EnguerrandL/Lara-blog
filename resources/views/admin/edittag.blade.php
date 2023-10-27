@@ -8,7 +8,7 @@
     <div class="mt-5 form-group">
 
         <label for="name">Editer votre tag</label>
-        <input class="form-control" type="text" name="name" value="">
+        <input class="form-control" type="text" name="name" value="{{old('name', $tag->name)}}">
         @error('name')
         {{ $message }}
         @enderror

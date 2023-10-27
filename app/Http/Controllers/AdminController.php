@@ -229,12 +229,12 @@ class AdminController extends Controller
 
         $image = $request->validated('image');
 
-        if ($image) {
-            $data['image'] = $image->store('blog', 'public');
-        }
+        // if ($image === null || $image->getError()) {
+        //     $data['image'] = $image->store('blog', 'public');
+        // }
 
 
-        if ($image = null) {
+        if ($image === null || $image->getError()) {
 
             return $data;
         }
@@ -242,6 +242,7 @@ class AdminController extends Controller
 
             Storage::disk('public')->delete($post->image);
         }
+        $data['image'] = $image->store('blog', 'public');
         return $data;
     }
 
