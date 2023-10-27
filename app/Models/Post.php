@@ -21,9 +21,6 @@ class Post extends Model
         'content',
         'category_id',
         'tags_id',
-        'created_at',
-        'updated_at',
-
         'image',
     ];
 

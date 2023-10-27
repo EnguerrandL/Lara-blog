@@ -17,23 +17,26 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
 use Illuminate\View\View as ViewView;
 use Illuminate\Support\Str;
+
 class BlogController extends Controller
 {
 
 
-    public function index(BlogFilterRequest $request): View{
-    
+    public function index(BlogFilterRequest $request): View
+    {
+
         return view('blog.index', [
             'posts' => Post::all(),
             'categories' => Category::all()
         ]);
     }
 
-    public function show (String $slug, Post $post): RedirectResponse | View{
-     
+    public function show(String $slug, Post $post): RedirectResponse | View
+    {
 
-      
-        if ($post->slug != $slug){
+
+
+        if ($post->slug != $slug) {
             return to_route('blog.show', ['slug' => $post->slug, 'post' => $post->id]);
         }
 
@@ -44,27 +47,18 @@ class BlogController extends Controller
     }
 
 
-public function showCategory( $category){
+    public function showCategory(Category $category, Post $post)
+    {
 
-   
 
-    // dd( $category);
-    $posts = Post::where('category_id', $category)->get();
-  
+        $cat = Category::with('posts')->get();
 
-   
-  
+        $posts = Post::where('category_id', $category->id)->get();
 
-    return view('blog.showcategory', [
-        'posts' => $posts,
-        'category' => $category,
-     
-    ]);
+        return view('blog.showcategory', [
+
+            'posts' => $posts,
+
+        ]);
+    }
 }
-
-
-
-
-}
-
-

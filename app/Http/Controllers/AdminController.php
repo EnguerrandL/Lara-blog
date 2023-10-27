@@ -30,8 +30,6 @@ class AdminController extends Controller
         ]);
     }
 
-    // Hello 
-
     public function storeTag(FormPostRequest $request)
     {
 
@@ -70,19 +68,14 @@ class AdminController extends Controller
 
     public function index()
     {
-         
-      
- 
-        // User::create([
-        //     'name' => 'Admin',
-        //     'email' => 'admin@net.fr',
-        //     'password' => Hash::make('0000')
-        // ]); 
-
 
         $post = Post::all();
         $category = Category::all();
         $tag = Tag::all();
+
+
+
+        
         return view('admin.index', [
             'posts' => $post,
             'categories' => $category,
@@ -94,7 +87,7 @@ class AdminController extends Controller
     public function create()
     {
 
- 
+
         $post = new Post();
         $category = Category::all();
         $tag = Tag::all();
@@ -133,9 +126,6 @@ class AdminController extends Controller
 
     public function editCategory(Category $category)
     {
-
-
-
         return view('admin.editcategories', [
             'category' => $category,
         ]);
@@ -144,14 +134,10 @@ class AdminController extends Controller
 
     public function updateCategory(Category $category, FormPostRequest $request)
     {
-        // $category = new Category();
-
-
 
         $category->update($request->validated());
 
         $updated = $request->category->updated_at;
-        //  dd($category->save());
 
 
 
@@ -176,34 +162,24 @@ class AdminController extends Controller
 
         $post = new Post($this->extractData(new Post, $request));
 
-       
-        $post->save();
 
-        // Post::create($this->extractData($post, $request));
+        $post->save();
         $post->tags()->sync($request->validated('tags'));
 
-
-
-        // dd($post->tags()->sync($request->validated('tags'), false));
-
-
         return redirect()->route('admin.index')->with('success', 'La publication à été crée');
-
-        //       return  dd('working');
-
     }
 
 
     public function edit(Post $post)
     {
 
-        
+
 
         return view('admin.edit', [
             'post' => $post,
             'categories' => Category::select('id', 'name')->get(),
             'tags' => Tag::select('id', 'name')->get(),
-        
+
         ]);
     }
 
@@ -228,11 +204,6 @@ class AdminController extends Controller
 
 
         $image = $request->validated('image');
-
-        // if ($image === null || $image->getError()) {
-        //     $data['image'] = $image->store('blog', 'public');
-        // }
-
 
         if ($image === null || $image->getError()) {
 
