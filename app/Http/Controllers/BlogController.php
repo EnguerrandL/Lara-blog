@@ -50,14 +50,19 @@ class BlogController extends Controller
     public function showCategory(Category $category, Post $post)
     {
 
-
-        $cat = Category::with('posts')->get();
+  
+       
 
         $posts = Post::where('category_id', $category->id)->get();
+
+        $category = $category->name;
+        
+        
 
         return view('blog.showcategory', [
 
             'posts' => $posts,
+            'category' => $category
 
         ]);
     }

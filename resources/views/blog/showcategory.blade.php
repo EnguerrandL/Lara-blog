@@ -1,7 +1,7 @@
 @extends('base')
 
 @section('content')
-    <h1>Page catégorie </h1>
+    <h1 class="mt-5 mb-5 text-center">Page catégorie : <strong>{{$category}}</strong> </h1>
     <ul class="list-group">
         <div class="col-8">
             @foreach ($posts as $post)
