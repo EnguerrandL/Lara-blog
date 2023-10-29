@@ -2,10 +2,15 @@
 
 @section('content')
     <h1 class="mt-5 mb-5 text-center">Page catégorie : <strong>{{$category}}</strong> </h1>
+
+    @include('breadcrumb')
+
+    {{ Breadcrumbs::render('category', $category) }} 
+
     <ul class="list-group">
-        <div class="col-8">
+        <div class="container-fluid">
             @foreach ($posts as $post)
-                <div class="card " style="width: 40rem;">
+                <div class="card " >
 
 
 

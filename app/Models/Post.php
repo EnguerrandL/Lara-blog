@@ -40,6 +40,11 @@ class Post extends Model
         return Storage::disk('public')->url($this->image);
     }
 
+//     public function getRouteKeyName()
+// {
+//     return 'slug'; // Remplacez 'slug' par le nom de la colonne que vous utilisez
+// }
+
 
 
     public function postStatus()

@@ -184,7 +184,7 @@ dd(Request::route()->getPrefix());
 
 
             @endauth
-            <div class="col-md-9 col-lg-10">
+            <div class="container-fluid">
                 <div class="container">
                     <!-- Votre contenu ici -->
 

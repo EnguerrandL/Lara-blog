@@ -6,6 +6,8 @@
 
     <h1>Mon blog</h1>
 
+
+
     <div class="container-fluid col-12">
         <div class="row ">
             <div class="col">
@@ -15,7 +17,7 @@
                     <h5 class="text-center disabled list-group-item list-group-item-action list-group-item-primary">
                         Catégories </h5>
                     @foreach ($categories as $category)
-                        <a href="{{ route('blog.showCategory', $category) }}"
+                        <a href="{{ route('blog.showCategory', $category->name) }}"
                             class="list-group-item list-group-item-action list-group-item-primary">
                             {{ $category->name }} </a>
                     @endforeach

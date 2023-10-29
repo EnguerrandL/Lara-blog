@@ -9,6 +9,7 @@ use App\Models\Category;
 use Illuminate\Auth\Middleware\Authenticate;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use Tabuna\Breadcrumbs\Trail;
 
 /*
 |--------------------------------------------------------------------------
@@ -53,11 +54,13 @@ Route::prefix('/')->name('blog.')->controller(BlogController::class)->group(func
     Route::get('/', 'index')->name('index');
 
 
+    Route::get('/{slug}/{post}', 'show')
+        ->where([
+            'post' => '[0-9]+',
+            'slug' => '[a-z0-9\-]+'
+        ])
+        ->name('show');
 
-    Route::get('/{slug}/{post}', 'show')->where([
-        'id' => '[0-9]+',
-        'slug' => '[a-z0-9\-]+'
-    ])->name('show');
 
     Route::get('/{category}', 'showCategory')->name('showCategory');
 });
